@@ -431,6 +431,9 @@ footer .row2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
 
 .maptable .apis .api-desc{display:block;font-size:12px;color:var(--muted);line-height:1.5;margin-top:7px;white-space:normal}
 
+
+.maptable td:first-child{width:24%}
+.maptable .apis{width:46%}
 </style>
 </head>
 <body>
@@ -629,66 +632,52 @@ footer .row2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
     </div>
 
     <h3 class="sub-h">Scope, APIs and build</h3>
-    <p class="sec-sub">Grouped by the phases above: each product, its APIs, the use case it enables, the pain point it clears, the effort to build, and where to start.</p>
+    <p class="sec-sub">Grouped by the phases above: each product, its APIs, the effort to build, and where to start.</p>
     <table class="maptable">
-      <thead><tr><th>Product</th><th>APIs needed</th><th>Use case</th><th>Pain point solved</th><th>Effort</th><th>Implementation details</th></tr></thead>
+      <thead><tr><th>Product</th><th>APIs needed</th><th>Effort</th><th>Implementation details</th></tr></thead>
       <tbody>
-        <tr class="grp"><td colspan="6">Phase 1 &middot; Funding journey</td></tr>
+        <tr class="grp"><td colspan="4">Phase 1 &middot; Funding journey</td></tr>
         <tr>
           <td>One-Time Payments<br><span class="sub">a Charge per payment</span></td>
           <td class="apis"><code>POST /v4/payment-charges</code><code>GET /v4/payment-charges/{id}</code><code>Hosted authentication (redirect)</code></td>
-          <td>One-off wallet top-up from the customer's bank.</td>
-          <td>Card fees erode margins on top-ups and collections.</td>
           <td class="eff">~1 week</td>
           <td class="ck"><button class="guide-btn" onclick="openPanel('otp')">View guide</button></td>
         </tr>
         <tr>
           <td>Recurring Payments<br><span class="sub">Payment Agreement</span></td>
           <td class="apis"><code>POST /v4/payment-agreements</code><code>POST /v4/payment-agreements/{id}/payment-charges</code><code>POST /v4/payment-agreements/{id}/revocations</code></td>
-          <td>Scheduled and repeat funding on one Payment Agreement.</td>
-          <td>Re-entry and re-authorisation friction on every recurring charge.</td>
           <td class="eff">~1 week</td>
           <td class="ck"><button class="guide-btn" onclick="openPanel('rec')">View guide</button></td>
         </tr>
         <tr>
           <td>Consent Management Interface<br><span class="sub">CMI, required before go-live</span></td>
           <td class="apis"><span class="api-desc">Wise builds the frontend and backend from Lean-provided Figma screens. Lean will also share the functional requirements and acceptance criteria.</span></td>
-          <td>Let users see their Open Finance payment history and all their Payment Agreements, and revoke an agreement at any time.</td>
-          <td>Mandatory under the UAE Open Finance framework before go-live.</td>
           <td class="eff">~1-2 weeks</td>
           <td class="ck"><a href="https://www.figma.com/design/YOYZ09UBOGSIj3U0Ipszd3/Lean-%E2%9C%97-Wise---UX-Best-Practices?node-id=0-1" target="_blank" rel="noopener">CMI screens (Figma)</a></td>
         </tr>
-        <tr class="grp"><td colspan="6">Phase 2 &middot; Verified pay-ins <span class="tbc" style="margin-left:8px">In development, Q4</span></td></tr>
+        <tr class="grp"><td colspan="4">Phase 2 &middot; Verified pay-ins <span class="tbc" style="margin-left:8px">In development, Q4</span></td></tr>
         <tr>
           <td>Name match at initiation<br><span class="sub">Lean-side match</span></td>
           <td class="apis"><code>customer.name</code><code>instrument.holder_name</code><span class="api-desc">In development at Lean, targeted for Q4. Once live, Lean matches the bank-returned account holder name against the customer name on its side, enabled as a trait with no customer action, and rejects mismatches before money moves. Whether the name is also returned on webhooks is being confirmed.</span></td>
-          <td>Screen the actual payer, not only the asserted customer name, as part of Wise's sanctions controls.</td>
-          <td>Payer identity is asserted, not confirmed, at the point of payment.</td>
           <td class="eff">Lean build, Q4</td>
           <td class="ck">-</td>
         </tr>
-        <tr class="grp"><td colspan="6">Future phases &middot; Payouts, Data and Cards <span class="tbc" style="margin-left:8px">Later scope</span></td></tr>
+        <tr class="grp"><td colspan="4">Future phases &middot; Payouts, Data and Cards <span class="tbc" style="margin-left:8px">Later scope</span></td></tr>
         <tr>
           <td>Payouts<br><span class="sub">server-to-server</span></td>
           <td class="apis"><code>POST /payouts/v1/payment/destinations</code><code>POST /payouts/v1/payment</code></td>
-          <td>Corridor payout and bill payment to UAE accounts and billers. An open decision on Wise's side.</td>
-          <td>Slow, costly correspondent transfers on outbound payments.</td>
           <td class="eff">~5 eng-days</td>
           <td class="ck"><button class="guide-btn" onclick="openPanel('pay')">View guide</button></td>
         </tr>
         <tr>
           <td>Data<br><span class="sub">account information</span></td>
           <td class="apis"><span class="tbc">To be scoped</span></td>
-          <td>Account insights for income-based decisions, e.g. salary verification for lending and credit limit increases. In discovery.</td>
-          <td>-</td>
           <td class="eff">TBC</td>
           <td class="ck">-</td>
         </tr>
         <tr>
           <td>Cards<br><span class="sub">same integration</span></td>
           <td class="apis"><code>payment_method</code></td>
-          <td>Add cards and further payment methods as values on the existing Charge integration, no re-integration. Lean's cards product is in build, KSA first, UAE to follow.</td>
-          <td>Each new payment method today means a new provider integration.</td>
           <td class="eff">TBC</td>
           <td class="ck">-</td>
         </tr>
@@ -735,7 +724,7 @@ footer .row2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
     <div class="sp-h">How it works</div>
     <div class="sp-diagram"><svg class="seqsvg" viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg" role="img"><style>.lb{font:700 11.5px Arial,Helvetica,sans-serif;fill:#1c2024}.ms{font:500 10.5px Arial,Helvetica,sans-serif;fill:#1c2024}.mm{font:italic 500 10.5px Arial,Helvetica,sans-serif;fill:#6b7280}</style><line x1="40.0" y1="34" x2="40.0" y2="300" stroke="#e5e7eb" stroke-width="1.5"/><rect x="-12.0" y="6" width="104" height="22" rx="7" fill="#f3f4f6" stroke="#e5e7eb"/><text x="40.0" y="21" text-anchor="middle" class="lb">Wise backend</text><line x1="250.0" y1="34" x2="250.0" y2="300" stroke="#e5e7eb" stroke-width="1.5"/><rect x="198.0" y="6" width="104" height="22" rx="7" fill="#f3f4f6" stroke="#e5e7eb"/><text x="250.0" y="21" text-anchor="middle" class="lb">Lean</text><line x1="460.0" y1="34" x2="460.0" y2="300" stroke="#e5e7eb" stroke-width="1.5"/><rect x="408.0" y="6" width="104" height="22" rx="7" fill="#f3f4f6" stroke="#e5e7eb"/><text x="460.0" y="21" text-anchor="middle" class="lb">Customer</text><line x1="40.0" y1="60" x2="244.0" y2="60" stroke="#1c2024" stroke-width="1.6"/><path d="M242.0 56 L250.0 60 L242.0 64 Z" fill="#1c2024"/><text x="145.0" y="55" text-anchor="middle" class="ms">Create Charge  (POST /v4/payment-charges)</text><line x1="250.0" y1="94" x2="46.0" y2="94" stroke="#3dd68c" stroke-width="1.6"/><path d="M48.0 90 L40.0 94 L48.0 98 Z" fill="#3dd68c"/><text x="145.0" y="89" text-anchor="middle" class="ms">Charge + hosted auth URL</text><line x1="40.0" y1="128" x2="454.0" y2="128" stroke="#1c2024" stroke-width="1.6"/><path d="M452.0 124 L460.0 128 L452.0 132 Z" fill="#1c2024"/><text x="250.0" y="123" text-anchor="middle" class="ms">Send customer to authenticate</text><line x1="460.0" y1="162" x2="256.0" y2="162" stroke="#1c2024" stroke-width="1.6"/><path d="M258.0 158 L250.0 162 L258.0 166 Z" fill="#1c2024"/><text x="355.0" y="157" text-anchor="middle" class="ms">Customer authenticates with their bank</text><line x1="250.0" y1="196" x2="46.0" y2="196" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="5 4"/><path d="M48.0 192 L40.0 196 L48.0 200 Z" fill="#6b7280"/><text x="145.0" y="191" text-anchor="middle" class="ms">charge.captured webhook</text><line x1="40.0" y1="230" x2="244.0" y2="230" stroke="#1c2024" stroke-width="1.6"/><path d="M242.0 226 L250.0 230 L242.0 234 Z" fill="#1c2024"/><text x="145.0" y="225" text-anchor="middle" class="ms">Fetch Charge  (GET /v4/payment-charges/{id})</text><line x1="250.0" y1="264" x2="46.0" y2="264" stroke="#3dd68c" stroke-width="1.6"/><path d="M48.0 260 L40.0 264 L48.0 268 Z" fill="#3dd68c"/><text x="145.0" y="259" text-anchor="middle" class="ms">Charge status: CAPTURED</text></svg></div>
     <div class="sp-h">Integration checklist</div>
-    <ol class="sp-check"><li>Create a Charge from the backend: <code>POST /v4/payment-charges</code> with the amount, customer, <code>settlement_account_id</code> and an <code>Idempotency-Key</code>.</li><li>Send the customer to the returned hosted authentication URL: a redirect on web, or a WebView with a deep link back into the app.</li><li>Treat the customer's return as the end of authentication, not the payment result.</li><li>Check the outcome with <code>GET /v4/payment-charges/{id}</code> and handle <code>CAPTURED</code>, <code>DECLINED</code> and <code>DISCARDED</code>. The customer has 10 minutes to authenticate; declined and discarded are terminal, so retries mean a new Charge.</li><li>Listen for <code>charge.captured</code>, <code>charge.declined</code> and <code>charge.discarded</code> webhooks; tolerate duplicate and out-of-order delivery.</li><li>Test in Sandbox: a successful payment, a decline, abandoned authentication, an idempotent retry, and a duplicate webhook.</li></ol>
+    <ol class="sp-check"><li data-check="otp-1">Create a Charge from the backend: <code>POST /v4/payment-charges</code> with the amount, customer, <code>settlement_account_id</code> and an <code>Idempotency-Key</code>.</li><li data-check="otp-2">Send the customer to the returned hosted authentication URL: a redirect on web, or a WebView with a deep link back into the app.</li><li data-check="otp-3">Treat the customer's return as the end of authentication, not the payment result.</li><li data-check="otp-4">Check the outcome with <code>GET /v4/payment-charges/{id}</code> and handle <code>CAPTURED</code>, <code>DECLINED</code> and <code>DISCARDED</code>. The customer has 10 minutes to authenticate; declined and discarded are terminal, so retries mean a new Charge.</li><li data-check="otp-5">Listen for <code>charge.captured</code>, <code>charge.declined</code> and <code>charge.discarded</code> webhooks; tolerate duplicate and out-of-order delivery.</li><li data-check="otp-6">Test in Sandbox: a successful payment, a decline, abandoned authentication, an idempotent retry, and a duplicate webhook.</li></ol>
     <div class="sp-h">Endpoints</div>
     <div class="sp-codes"><code>POST /v4/payment-charges</code><code>GET /v4/payment-charges/{charge_id}</code></div>
     <div class="sp-h">Lean docs</div>
@@ -756,7 +745,7 @@ footer .row2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
     <div class="sp-h">How it works</div>
     <div class="sp-diagram"><svg class="seqsvg" viewBox="0 0 500 344" xmlns="http://www.w3.org/2000/svg" role="img"><style>.lb{font:700 11.5px Arial,Helvetica,sans-serif;fill:#1c2024}.ms{font:500 10.5px Arial,Helvetica,sans-serif;fill:#1c2024}.mm{font:italic 500 10.5px Arial,Helvetica,sans-serif;fill:#6b7280}</style><line x1="40.0" y1="34" x2="40.0" y2="334" stroke="#e5e7eb" stroke-width="1.5"/><rect x="-12.0" y="6" width="104" height="22" rx="7" fill="#f3f4f6" stroke="#e5e7eb"/><text x="40.0" y="21" text-anchor="middle" class="lb">Wise backend</text><line x1="250.0" y1="34" x2="250.0" y2="334" stroke="#e5e7eb" stroke-width="1.5"/><rect x="198.0" y="6" width="104" height="22" rx="7" fill="#f3f4f6" stroke="#e5e7eb"/><text x="250.0" y="21" text-anchor="middle" class="lb">Lean</text><line x1="460.0" y1="34" x2="460.0" y2="334" stroke="#e5e7eb" stroke-width="1.5"/><rect x="408.0" y="6" width="104" height="22" rx="7" fill="#f3f4f6" stroke="#e5e7eb"/><text x="460.0" y="21" text-anchor="middle" class="lb">Customer</text><line x1="40.0" y1="60" x2="244.0" y2="60" stroke="#1c2024" stroke-width="1.6"/><path d="M242.0 56 L250.0 60 L242.0 64 Z" fill="#1c2024"/><text x="145.0" y="55" text-anchor="middle" class="ms">Create Agreement  (POST /v4/payment-agreements)</text><line x1="250.0" y1="94" x2="46.0" y2="94" stroke="#3dd68c" stroke-width="1.6"/><path d="M48.0 90 L40.0 94 L48.0 98 Z" fill="#3dd68c"/><text x="145.0" y="89" text-anchor="middle" class="ms">Agreement + hosted auth URL</text><line x1="40.0" y1="128" x2="454.0" y2="128" stroke="#1c2024" stroke-width="1.6"/><path d="M452.0 124 L460.0 128 L452.0 132 Z" fill="#1c2024"/><text x="250.0" y="123" text-anchor="middle" class="ms">Send customer to authorise the agreement</text><line x1="460.0" y1="162" x2="256.0" y2="162" stroke="#1c2024" stroke-width="1.6"/><path d="M258.0 158 L250.0 162 L258.0 166 Z" fill="#1c2024"/><text x="355.0" y="157" text-anchor="middle" class="ms">Customer authenticates with their bank</text><line x1="250.0" y1="196" x2="46.0" y2="196" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="5 4"/><path d="M48.0 192 L40.0 196 L48.0 200 Z" fill="#6b7280"/><text x="145.0" y="191" text-anchor="middle" class="ms">agreement.activated webhook</text><line x1="40.0" y1="230" x2="244.0" y2="230" stroke="#1c2024" stroke-width="1.6"/><path d="M242.0 226 L250.0 230 L242.0 234 Z" fill="#1c2024"/><text x="145.0" y="225" text-anchor="middle" class="ms">Create Charge under Agreement</text><line x1="250.0" y1="264" x2="46.0" y2="264" stroke="#3dd68c" stroke-width="1.6"/><path d="M48.0 260 L40.0 264 L48.0 268 Z" fill="#3dd68c"/><text x="145.0" y="259" text-anchor="middle" class="ms">Charge + status</text><line x1="250.0" y1="298" x2="46.0" y2="298" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="5 4"/><path d="M48.0 294 L40.0 298 L48.0 302 Z" fill="#6b7280"/><text x="145.0" y="293" text-anchor="middle" class="ms">charge.captured webhook</text></svg></div>
     <div class="sp-h">Integration checklist</div>
-    <ol class="sp-check"><li>Create a Payment Agreement: <code>POST /v4/payment-agreements</code> with the payment method, currency, customer and limits such as <code>per_charge_max_amount</code> and an expiry date.</li><li>Send the customer to the hosted authentication URL to authorise the agreement.</li><li>Confirm activation through the <code>agreement.activated</code> webhook or <code>GET /v4/payment-agreements/{id}</code>; only charge an <code>ACTIVE</code> agreement.</li><li>Charge on demand with <code>POST /v4/payment-agreements/{id}/payment-charges</code> and an <code>Idempotency-Key</code>, or let Lean run a <code>RECURRING</code> or instalment plan on the agreement.</li><li>Handle the lifecycle: pause, resume and revoke endpoints. <code>REVOKED</code>, <code>FULFILLED</code>, <code>DECLINED</code> and <code>DISCARDED</code> are terminal.</li><li>Track the agreement status separately from each Charge's status, and listen for both <code>agreement.*</code> and <code>charge.*</code> webhooks.</li><li>Test in Sandbox: activation, declined and abandoned authorisation, a charge over the agreement limits, revocation, and duplicate webhooks.</li></ol>
+    <ol class="sp-check"><li data-check="rec-1">Create a Payment Agreement: <code>POST /v4/payment-agreements</code> with the payment method, currency, customer and limits such as <code>per_charge_max_amount</code> and an expiry date.</li><li data-check="rec-2">Send the customer to the hosted authentication URL to authorise the agreement.</li><li data-check="rec-3">Confirm activation through the <code>agreement.activated</code> webhook or <code>GET /v4/payment-agreements/{id}</code>; only charge an <code>ACTIVE</code> agreement.</li><li data-check="rec-4">Charge on demand with <code>POST /v4/payment-agreements/{id}/payment-charges</code> and an <code>Idempotency-Key</code>, or let Lean run a <code>RECURRING</code> or instalment plan on the agreement.</li><li data-check="rec-5">Handle the lifecycle: pause, resume and revoke endpoints. <code>REVOKED</code>, <code>FULFILLED</code>, <code>DECLINED</code> and <code>DISCARDED</code> are terminal.</li><li data-check="rec-6">Track the agreement status separately from each Charge's status, and listen for both <code>agreement.*</code> and <code>charge.*</code> webhooks.</li><li data-check="rec-7">Test in Sandbox: activation, declined and abandoned authorisation, a charge over the agreement limits, revocation, and duplicate webhooks.</li></ol>
     <div class="sp-h">Endpoints</div>
     <div class="sp-codes"><code>POST /v4/payment-agreements</code><code>GET /v4/payment-agreements/{agreement_id}</code><code>POST /v4/payment-agreements/{agreement_id}/payment-charges</code><code>POST /v4/payment-agreements/{agreement_id}/pauses</code><code>POST /v4/payment-agreements/{agreement_id}/resumptions</code><code>POST /v4/payment-agreements/{agreement_id}/revocations</code></div>
     <div class="sp-h">Lean docs</div>
@@ -777,7 +766,7 @@ footer .row2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
     <div class="sp-h">How it works</div>
     <div class="sp-diagram"><svg class="seqsvg" viewBox="0 0 500 208" xmlns="http://www.w3.org/2000/svg" role="img"><style>.lb{font:700 11.5px Arial,Helvetica,sans-serif;fill:#1c2024}.ms{font:500 10.5px Arial,Helvetica,sans-serif;fill:#1c2024}.mm{font:italic 500 10.5px Arial,Helvetica,sans-serif;fill:#6b7280}</style><line x1="40.0" y1="34" x2="40.0" y2="198" stroke="#e5e7eb" stroke-width="1.5"/><rect x="-12.0" y="6" width="104" height="22" rx="7" fill="#f3f4f6" stroke="#e5e7eb"/><text x="40.0" y="21" text-anchor="middle" class="lb">Wise backend</text><line x1="250.0" y1="34" x2="250.0" y2="198" stroke="#e5e7eb" stroke-width="1.5"/><rect x="198.0" y="6" width="104" height="22" rx="7" fill="#f3f4f6" stroke="#e5e7eb"/><text x="250.0" y="21" text-anchor="middle" class="lb">Lean</text><line x1="460.0" y1="34" x2="460.0" y2="198" stroke="#e5e7eb" stroke-width="1.5"/><rect x="408.0" y="6" width="104" height="22" rx="7" fill="#f3f4f6" stroke="#e5e7eb"/><text x="460.0" y="21" text-anchor="middle" class="lb">Bank rails</text><line x1="40.0" y1="60" x2="244.0" y2="60" stroke="#1c2024" stroke-width="1.6"/><path d="M242.0 56 L250.0 60 L242.0 64 Z" fill="#1c2024"/><text x="145.0" y="55" text-anchor="middle" class="ms">Create payout destination</text><line x1="40.0" y1="94" x2="244.0" y2="94" stroke="#1c2024" stroke-width="1.6"/><path d="M242.0 90 L250.0 94 L242.0 98 Z" fill="#1c2024"/><text x="145.0" y="89" text-anchor="middle" class="ms">Create payout  (POST /payouts/v1/payment)</text><line x1="250.0" y1="128" x2="454.0" y2="128" stroke="#1c2024" stroke-width="1.6"/><path d="M452.0 124 L460.0 128 L452.0 132 Z" fill="#1c2024"/><text x="355.0" y="123" text-anchor="middle" class="ms">Funds dispatched to beneficiary account</text><line x1="250.0" y1="162" x2="46.0" y2="162" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="5 4"/><path d="M48.0 158 L40.0 162 L48.0 166 Z" fill="#6b7280"/><text x="145.0" y="157" text-anchor="middle" class="ms">Payout lifecycle webhooks</text></svg></div>
     <div class="sp-h">Integration checklist</div>
-    <ol class="sp-check"><li>Create the payout destination: <code>POST /payouts/v1/payment/destinations</code> with the beneficiary's details.</li><li>Create the payout: <code>POST /payouts/v1/payment</code> with an idempotency key so retries never double-pay.</li><li>Treat webhooks as the source of truth for the payout lifecycle, and handle failed-payout retries explicitly.</li><li>Test in Sandbox: a successful payout, a failed payout and retry, and duplicate webhooks.</li></ol>
+    <ol class="sp-check"><li data-check="pay-1">Create the payout destination: <code>POST /payouts/v1/payment/destinations</code> with the beneficiary's details.</li><li data-check="pay-2">Create the payout: <code>POST /payouts/v1/payment</code> with an idempotency key so retries never double-pay.</li><li data-check="pay-3">Treat webhooks as the source of truth for the payout lifecycle, and handle failed-payout retries explicitly.</li><li data-check="pay-4">Test in Sandbox: a successful payout, a failed payout and retry, and duplicate webhooks.</li></ol>
     <div class="sp-h">Endpoints</div>
     <div class="sp-codes"><code>POST /payouts/v1/payment/destinations</code><code>POST /payouts/v1/payment</code></div>
     <div class="sp-h">Lean docs</div>
