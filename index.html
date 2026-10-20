@@ -516,10 +516,10 @@ footer .row2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
 <!-- JOURNEYS -->
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">The remittance journey: end-to-end</h2></div>
+    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">The remittance journey, end to end</h2></div>
     <p class="sec-intro">Told as one money lifecycle: a UAE customer funds their Wise balance, automates recurring money movement and pays out locally. The journeys split along two lines: the direction of funds (money in vs money out) and the payment permission (the customer authenticates each payment vs one standing agreement), because each combination is a different Lean product, a different customer experience, and a different piece of the build. Each step below is an existing Wise experience (shown in-app) mapped to the Lean product that powers it in the UAE.</p>
     <div class="usecases">
-      <span class="uc">Wallet top-up</span><span class="uc">Scheduled remittance</span><span class="uc">Savings automation</span><span class="uc">Corridor payout</span><span class="uc">Pay a request</span>
+      <span class="uc">Wallet top-up</span><span class="uc">Scheduled remittance</span><span class="uc">Savings automation</span><span class="uc">Corridor payout</span><span class="uc">Bill payment</span><span class="uc">Pay a request</span>
     </div>
     <div class="journeys">
 
@@ -650,6 +650,14 @@ footer .row2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
           <td class="eff">~1 week</td>
           <td class="ck"><button class="guide-btn" onclick="openPanel('rec')">View guide</button></td>
         </tr>
+        <tr>
+          <td>Consent Management Interface<br><span class="sub">CMI, required before go-live</span></td>
+          <td class="apis"><span class="api-desc">Wise builds the frontend and backend from Lean-provided Figma screens. Lean will also share the functional requirements and acceptance criteria.</span></td>
+          <td>Let users see their Open Finance payment history and all their Payment Agreements, and revoke an agreement at any time.</td>
+          <td>Mandatory under the UAE Open Finance framework before go-live.</td>
+          <td class="eff">~1-2 weeks</td>
+          <td class="ck"><a href="https://www.figma.com/design/YOYZ09UBOGSIj3U0Ipszd3/Lean-%E2%9C%97-Wise---UX-Best-Practices?node-id=0-1" target="_blank" rel="noopener">CMI screens (Figma)</a></td>
+        </tr>
         <tr class="grp"><td colspan="6">Phase 2 &middot; Verified pay-ins <span class="tbc" style="margin-left:8px">In development, Q4</span></td></tr>
         <tr>
           <td>Name match at initiation<br><span class="sub">Lean-side match</span></td>
@@ -686,6 +694,10 @@ footer .row2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
         </tr>
       </tbody>
     </table>
+    <p class="stages-note"><b>Payouts</b>, data and cards are listed as future phases for visibility; whether the outbound leg runs through Lean is a decision Wise has not yet taken. <b>Name verification on pay-ins</b>, the control Wise asked for, is in development at Lean and targeted for Q4: once live, Lean matches the bank-returned account holder name against the Wise-supplied customer name and rejects mismatches at payment initiation. Whether the verified name is returned on webhooks is still being confirmed. Two practical supports for this: the instrument ID is stable per account, and a different account generates a new instrument ID, so a successful check can be recorded once per instrument rather than repeated on every payment; and the Emirates ID is a required input at the start of the Lean flow, giving Wise a pre-validation point alongside its own onboarding capture.</p>
+    <div class="calc">
+      <h4>Total implementation time</h4>
+      <ul class="tot-list">
         <li>Phase 1, Funding (One-Time + Recurring Payments): <b>~1-2 weeks</b></li>
         <li>Phase 2, Verified pay-ins: <b>in development at Lean, targeted for Q4</b></li>
         <li>Future phases (Payouts, Data, Cards): <b>payouts ~5 eng-days; data and cards to be scoped</b></li>
